@@ -1,18 +1,17 @@
 from tkinter import *
-from colorsandfonts import *
+from settings import *
+
 
 class loginform:
     def __init__(self):
-        self.root2 = Toplevel()
-        self.root2.geometry("200x100")
+        self.roottp = Toplevel()
+        self.roottp.geometry("400x600")
+        self.roottp.resizable(False, False)
 
+        self.bgcanvas = Canvas(self.roottp, width=400, height=600, bg=backdrop)
+        self.bgcanvas.create_rectangle((25, 25), (375, 575), fill=secondarycolor1)
+        self.button = Button(self.bgcanvas, text="open toplevel1", command=loginform)
 
-
-        # Create exit button.
-        self.button = Button(self.root2, text="Exit", command=self.root2.destroy)
-
-        self.label.pack()
-        self.button.pack()
-
+        self.bgcanvas.place(x=0, y=0)
         # Display until closed manually.
-        self.root2.mainloop()
+        self.roottp.mainloop()

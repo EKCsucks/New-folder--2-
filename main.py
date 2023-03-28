@@ -17,3 +17,4 @@ class basicform:
 if __name__ == "__main__":
     # checks the code is being run form main then runs the class in this function
     window = basicform()
+
