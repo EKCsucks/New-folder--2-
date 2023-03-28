@@ -2,6 +2,8 @@ from tkinter import *
 from homepage import *  # imports the class from the other file
 
 
+
+
 class basicform:
     def __init__(self):
         self.root = Tk()

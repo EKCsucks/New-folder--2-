@@ -1,0 +1,17 @@
+
+page changer stuff
+
+from login import LoginPage
+LoginPage(self.display, self.previous_canvas, self.image_loader)
+
+
+remeber to ask it to forget previous canvas
+oldcavnas.pack_forget()
+self.head_frame.pack_forget()
+
+
+delete headframe aswell
+
+def login_button(self):
+        from login import LoginPage
+        LoginPage(self.display, self.canvas, self.image_loader, self.conn)
