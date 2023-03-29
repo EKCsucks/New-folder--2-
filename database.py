@@ -14,6 +14,7 @@ def create_connection(path):
 
     return connection
 
+
 # Creates a table from SQL connection, and from a query
 def create_table(conn, create_table_sql):
     try:
@@ -22,15 +23,28 @@ def create_table(conn, create_table_sql):
     except Error as e:
         print(e)
 
-# Creates a user inserting into the table, based off customer parameter
-def create_user(conn, customer):
-    sql = """INSERT INTO customers(FirstName, LastName, email)
-             VALUES(?,?,?)"""
+def check_email_exists(conn, email):
+    sql = """SELECT 1 from user where email=?"""
     cur = conn.cursor()
-    cur.execute(sql, customer)
+    cur.execute(sql, [email])
     conn.commit()
-    return cur.lastrowid
+    try:
+        return cur.fetchall()[0][0]
+    except IndexError:
+        return 0
 
+# Creates a user inserting into the table, based off customer parameter
+def check_login(conn, user):
+    sql = """SELECT user_id from user where (email=? and password=?)"""
+    cur = conn.cursor()
+    cur.execute(sql, [user])
+    conn.commit()
+    try:
+        return cur.fetchall()[0][0]
+    except IndexError:
+        return 0
+
+#make it a list
 # Main function, path of database is database.db and creation table query for a customer ID, firstname, lastname and email. SQLite will then attempt to connect and add 2 users to the table.
 def main():
     database = r"userdata.db"

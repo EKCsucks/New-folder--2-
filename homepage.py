@@ -24,7 +24,7 @@ class homepage:
                                         activebackground=primarycolor1, command=health_button)
             self.login_btn = Button(self.toggle_menu_fm, text="sign up/sign in", bg=primarycolor1, fg=secondarycolor1,
                                     font=header, bd=0,
-                                    activebackground=primarycolor1, command=loginform)
+                                    activebackground=primarycolor1, command=loginform())
             self.healthpge_btn.place(x=10, y=40)
             self.home_btn.place(x=10, y=20)
             self.login_btn.place(x=10, y=60)

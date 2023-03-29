@@ -15,3 +15,7 @@ delete headframe aswell
 def login_button(self):
         from login import LoginPage
         LoginPage(self.display, self.canvas, self.image_loader, self.conn)
+
+      user = self.password.get() + self.user.get
+
+      user_id integer primary key
