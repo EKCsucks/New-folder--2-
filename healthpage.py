@@ -1,15 +1,15 @@
 from tkinter import *
 from settings import *
 from login import *
-from healthpage import *
+from homepage import *
 
 
-class homepage:
+class healthtrackerpage:
     def __init__(self, root, previouscanvas):
         self.root = root
         previouscanvas.pack_forget()
-
         def toggle_menu():
+
             def collapse_toggle_menu():
                 self.toggle_menu_fm.destroy()
                 self.toggle_btn.config(command=toggle_menu)
@@ -17,11 +17,11 @@ class homepage:
             self.toggle_menu_fm = Frame(self.root, bg=primarycolor1)
             self.home_btn = Button(self.toggle_menu_fm, text="home", bg=primarycolor1, fg=secondarycolor1,
                                    font=header, bd=0,
-                                   activebackground=primarycolor1)
+                                   activebackground=primarycolor1, command=home_button)
             self.healthpge_btn = Button(self.toggle_menu_fm, text="personal health tracker", bg=primarycolor1,
                                         fg=secondarycolor1,
                                         font=header, bd=0,
-                                        activebackground=primarycolor1, command=health_button)
+                                        activebackground=primarycolor1)
             self.login_btn = Button(self.toggle_menu_fm, text="sign up/sign in", bg=primarycolor1, fg=secondarycolor1,
                                     font=header, bd=0,
                                     activebackground=primarycolor1, command=loginform)
@@ -38,11 +38,11 @@ class homepage:
                                  activebackground=primarycolor1, command=toggle_menu)
         self.bgcanvas.create_rectangle((-1, 0), (1350, 50), fill=primarycolor1)
         self.bgcanvas.create_rectangle((100, 100), (1200, 400), fill=secondarycolor1)
-        self.bgcanvas.create_text((1150, 25), text="health association group", fill=backdrop, font=header)
+        self.bgcanvas.create_text((1150, 25), text="go eat a salad", fill=backdrop, font=header)
         self.bgcanvas.place(x=0, y=0)
 
         self.toggle_btn.place(x=3, y=5)
 
-        def health_button():
-            from healthpage import healthtrackerpage
-            healthtrackerpage(root, self.bgcanvas)
+        def home_button():
+            from homepage import homepage
+            homepage(root, self.bgcanvas)

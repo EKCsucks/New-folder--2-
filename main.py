@@ -2,8 +2,6 @@ from tkinter import *
 from homepage import *  # imports the class from the other file
 
 
-
-
 class basicform:
     def __init__(self):
         self.root = Tk()
@@ -11,8 +9,11 @@ class basicform:
         self.root.geometry("1300x700")
         self.root.resizable(False, False)
         self.root.title('')
+        self.bgcanvas = Canvas(self.root)
         # calls on the class form another file
-        home = homepage(self.root)
+
+        self.bgcanvas.place(x=0, y=0)
+        home = homepage(self.root, self.bgcanvas)
         self.root.mainloop()
 
 
