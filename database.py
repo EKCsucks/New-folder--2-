@@ -23,8 +23,10 @@ def create_table(conn, create_table_sql):
     except Error as e:
         print(e)
 
+
 def check_email_exists(conn, email):
-    sql = """SELECT 1 from user where email=?"""
+
+    sql = """SELECT 1 from customers where email=?"""
     cur = conn.cursor()
     cur.execute(sql, [email])
     conn.commit()
@@ -33,9 +35,10 @@ def check_email_exists(conn, email):
     except IndexError:
         return 0
 
+
 # Creates a user inserting into the table, based off customer parameter
 def check_login(conn, user):
-    sql = """SELECT user_id from user where (email=? and password=?)"""
+    sql = """SELECT user_id from customers where (email=? and password=?)"""
     cur = conn.cursor()
     cur.execute(sql, [user])
     conn.commit()
@@ -44,26 +47,34 @@ def check_login(conn, user):
     except IndexError:
         return 0
 
-#make it a list
-# Main function, path of database is database.db and creation table query for a customer ID, firstname, lastname and email. SQLite will then attempt to connect and add 2 users to the table.
+
+def create_user(conn, user):
+    sql = """INSERT INTO customers(email, password)
+                     VALUES(?,?)"""
+    cur = conn.cursor()
+    cur.execute(sql, user)
+    conn.commit()
+    return cur.lastrowid
+
+
+# make it a list Main function, path of database is database.db and creation table query for a customer ID,
+# firstname, lastname and email. SQLite will then attempt to connect and add 2 users to the table.
 def main():
     database = r"userdata.db"
 
-    sql_create_projects_table = """CREATE TABLE IF NOT EXISTS customers(customerID integer PRIMARY KEY, FirstName text NOT NULL, LastName text NOT NULL, email text NOT NULL);"""
+    sql_create_projects_table ="""CREATE TABLE IF NOT EXISTS customers(customerID integer PRIMARY KEY,
+             email text NOT NULL, password text NOT NULL);"""
 
     conn = create_connection(database)
 
     if conn is not None:
         create_table(conn, sql_create_projects_table)
-        customer = ("John", "Doe", "hello@hello.com")
-        create_user(conn, customer)
-        customer = ("Jane", "Doe", "email@email.com")
-        create_user(conn, customer)
+        user = ("hello@hello.com", "password")
+        create_user(conn, user)
+        user = ("email@email.com", "notpassword")
+        create_user(conn, user)
         df = pd.read_sql_query("SELECT * FROM customers", conn)
         print(df)
     else:
         print("error")
 
-
-if __name__ == "__main__":
-    main()
