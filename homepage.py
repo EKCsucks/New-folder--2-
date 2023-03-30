@@ -37,7 +37,7 @@ class homepage:
                                  font=iconfont, bd=0,
                                  activebackground=primarycolor1, command=toggle_menu)
         self.bgcanvas.create_rectangle((-1, 0), (1350, 50), fill=primarycolor1)
-        self.bgcanvas.create_rectangle((100, 100), (1200, 400), fill=secondarycolor1)
+        self.bgcanvas.create_rectangle((100, 100), (1200, 400), fill=secondarycolor1, outline=secondarycolor1)
         self.bgcanvas.create_text((1150, 25), text="health association group", fill=backdrop, font=header)
         self.bgcanvas.place(x=0, y=0)
 

@@ -21,14 +21,14 @@ class loginform:
         self.bgcanvas.create_rectangle((25, 25), (375, 575), fill=secondarycolor1)
         self.button = Button(self.bgcanvas, text="open toplevel1", command=loginform)
         self.username_txt = Entry(self.bgcanvas, width=25, textvariable=self.user, bg=backdrop, font=loginfont)
-        #self.password_txt = Entry(self.bgcanvas, height=1, textvariable=self.password, width=25, bg=backdrop, font=loginfont)
+        self.password_txt = Entry(self.bgcanvas, height=1, textvariable=self.password, width=25, bg=backdrop, font=loginfont)
         self.toggle_btn = Button(self.bgcanvas, text='≡', bg=primarycolor1, fg='white',
                                  font=iconfont, bd=0,
                                  activebackground=primarycolor1, command=find_user)
 
         self.bgcanvas.place(x=0, y=0)
         self.username_txt.place(x=95, y=350)
-        #self.password_txt.place(x=95, y=400)
+        self.password_txt.place(x=95, y=400)
         self.toggle_btn.place(x=1, y=1)
         self.roottp.mainloop()
 
